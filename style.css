@@ -1,0 +1,111 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* overflow: hidden; */
+    background-color: #010125;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    color: white;
+    gap: .75em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1.title {
+    font-size: 25pt;
+    margin: 2.5em 0;
+}
+
+.input_user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin: .5em 0;
+}
+
+.input_user input {
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+    width: 300px;
+}
+
+.input_user button {
+    padding: 5px 10px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.div_user {
+    width: 285px;
+    display: grid;
+    gap: .5em;
+    text-align: center;
+    margin-top: 1em;
+    padding: 10px 25px;
+    background-color: rgba(240, 248, 255, 0.175);
+    border-radius: 5px;
+}
+
+.div_user .avatar {
+    box-sizing: border-box;
+    margin: auto;
+    width: 200px;
+    height: auto;
+    border-radius: 100%;
+    box-shadow: 0 0 5px orange;
+}
+
+.div_user .bio {
+    margin: .25em 0;
+}
+
+.div_user .pop {
+    margin: .75em 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.block {
+    visibility: hidden;
+}
+
+.div_repos{
+    margin: 1em 0;
+    display: grid;
+    gap: 1em;
+    margin-bottom: 5em;
+}
+.div_repos .repos{
+    width: 80vw;
+    display: grid;
+    gap: .75em;
+    padding: 10px 20px;
+    background-color: rgba(240, 248, 255, 0.068);
+}
+.repos div{
+    display: flex;
+    justify-content: space-between;
+}
+.repos .nameRepos{
+    font-size: 12pt;
+}
+.repos .urlRepos{
+    text-decoration: none;
+    font-size: 10pt;
+    color: rgb(67, 207, 161);
+
+}
+.repos .dateRepos{
+    font-size: 9pt;
+}
+

@@ -1,5 +1,6 @@
 const divUser = document.querySelector(".div_user");
 const divRepos = document.querySelector(".div_repos");
+const divInforms = document.querySelector(".informations");
 // let msg = document.querySelector(".msg");
 
 const userN = document.querySelector(".name");
@@ -7,6 +8,17 @@ const avatar = document.querySelector(".avatar");
 const bio = document.querySelector(".bio");
 const followers = document.querySelector(".followers");
 const following = document.querySelector(".following");
+
+const starts = () => {
+  event.preventDefault();
+
+  let imgSearch = document.querySelector(".imgSearch");
+  if(imgSearch != undefined) {
+    imgSearch.parentNode.removeChild(imgSearch);
+  }
+
+  Busca();
+}
 
 async function Busca() {
   let username = document.getElementById("user").value;
@@ -26,7 +38,9 @@ async function Busca() {
     avatar.setAttribute("src", "");
     followers.innerText = "";
     following.innerText = "";
-
+    divRepos.innerHTML = "";
+    divInforms.style.justifyContent = "center";
+    
     bio.innerText = "Nenhum usuario encontrado!";
   } else {
     showUser(userData);
@@ -50,6 +64,7 @@ async function showRepos(user) {
 
   const nameRepos = document.querySelector(".nameRepos");
   divRepos.innerHTML = "<h3> Repositorios do usuário </h3>";
+  divInforms.style.justifyContent = "space-around";
 
   let quant = [];
 
@@ -100,8 +115,9 @@ async function showRepos(user) {
       // url do repositorio
       let url = document.createElement("a");
       url.setAttribute("class", "urlRepos");
-      url.setAttribute("href", repos[quant[i]].url);
-      url.innerHTML = repos[quant[i]].url;
+      url.setAttribute("href", repos[quant[i]].html_url);
+      url.setAttribute("target", "_blank");
+      url.innerHTML = repos[quant[i]].html_url;
       divsOthers[i].appendChild(url);
 
       divsOthers[i].innerHTML += `<div class="info_counts"> 
@@ -119,37 +135,8 @@ async function showRepos(user) {
         
       </div>`;
 
-
-      // let h4 = document.createElement("h4");
-      // h4.setAttribute("class", "nameRepos");
-      // h4.innerHTML = repos[quant[i]].name;
-      // divsReposI[i].appendChild(h4);
-
-      //   let span = document.createElement("span");
-      //   span.setAttribute("class", "nameRepos");
-      //   span.innerHTML = repos[quant[i]].name;
     }
   }
 
   console.log(repos);
 }
-
-// if (repos.length > 0 && repos.length < 5) {
-//     repos.map((e) => {
-//       let h3 = document.createElement("h3");
-//       h3.setAttribute("class", "nameRepos");
-//       h3.innerHTML = e.name;
-//       divRepos.appendChild(h3);
-
-//       console.log(e);
-//     });
-//   } else if (repos.length != 0) {
-//     for (let r = 0; r < 5; r++) {
-//       let m = Math.floor(Math.random() * repos.length);
-
-//       let h3 = document.createElement("h3");
-//       h3.setAttribute("class", "nameRepos");
-//       h3.innerHTML = repos[m].name;
-//       divRepos.appendChild(h3);
-//     }
-//   }

@@ -20,7 +20,7 @@ body {
 
 h1.title {
     font-size: 25pt;
-    margin: 2em 0;
+    margin: 1.75em 0;
 }
 
 .input_user {
@@ -43,6 +43,20 @@ h1.title {
     padding: 5px 10px;
     width: 100px;
     cursor: pointer;
+}
+
+.imgSearch{
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    z-index: -1;
+}
+.imgSearch svg{
+    transform-origin: center center;
+    position: relative;
+    color: #3591A755;
+    animation: moveSearch 5s infinite linear;
 }
 
 .informations{
@@ -140,17 +154,70 @@ h1.title {
 }
 
 footer{
+    margin-top: auto;
     background-color: #0202137c;
     width: 100vw;
-    text-align: center;
     margin-bottom: 0;
+    padding: 10px;
+    font-size: 8pt;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+footer a{
+    text-decoration: none;
+    color: rgb(67, 207, 161) !important;
+}
+footer > span{
+    font-size: 10pt;
+}
+footer div{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-/* 
-
-    .info_counts
-    .starsRepos
-    .forksRepos
-    .viewsRepos
-
-*/
+@keyframes moveSearch {
+    0%{
+        transform: rotateZ(0);
+        translate: 0;
+    }
+    10%{
+        translate: -2px;
+    }
+    20%{
+        translate: -10px 5px;
+        transform: rotateZ(0);
+    }
+    30%{
+        translate: -20px 10px;
+        transform: rotateZ(75deg);
+    }
+    40%{
+        translate: -10px 5px;
+    }
+    50%{
+        translate: 0;
+    }
+    55%{
+    }
+    60%{
+        transition: 0;
+    }
+    70%{
+        translate: 10px -5px;
+        transform: rotateZ(75deg);
+    }
+    80%{
+        translate: 20px -10px;
+        transform: rotateZ(0);
+    }
+    90%{
+        translate: 10px -5px;
+    }
+    100%{
+        translate: 0;
+        transform: rotateZ(0);
+    }
+}

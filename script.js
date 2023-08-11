@@ -49,8 +49,7 @@ async function showRepos(user) {
   const repos = await response.json();
 
   const nameRepos = document.querySelector(".nameRepos");
-
-  console.log(repos.length);
+  divRepos.innerHTML = "<h3> Repositorios do usuário </h3>";
 
   let quant = [];
 
@@ -94,12 +93,37 @@ async function showRepos(user) {
       ).format(new Date(repos[quant[i]].created_at))} `;
       divsReposI[i].appendChild(dateRepos);
 
+      divsRepos[i].innerHTML += `<div class="othersInfoRepo"> </div>`;
+
+      let divsOthers = document.querySelectorAll(".othersInfoRepo");
+
       // url do repositorio
       let url = document.createElement("a");
       url.setAttribute("class", "urlRepos");
       url.setAttribute("href", repos[quant[i]].url);
       url.innerHTML = repos[quant[i]].url;
-      divsRepos[i].appendChild(url);
+      divsOthers[i].appendChild(url);
+
+      divsOthers[i].innerHTML += `<div class="info_counts"> 
+      <span class="starsRepos"> 
+        <abbr title="stars"> <img width="20" height="20" src="./img/icons8-multiple-stars-48.png" alt="multiple-stars"/> ${repos[quant[i]].stargazers_count} </abbr>
+      </span>
+
+      <span class="forksRepos"> 
+        <abbr title="forks"><img width="20" height="20" src="./img/icons8-arrows-fork-48.png" alt="arrows-fork"/> ${repos[quant[i]].forks_count} </abbr>
+      </span>
+        
+      <span class="viewsRepos"> 
+        <abbr title="views"><img width="20" height="20" src="./img/icons8-visualizar-arquivo-64.png" alt="views"/> ${repos[quant[i]].watchers_count} </abbr>
+      </span>
+        
+      </div>`;
+
+
+      // let h4 = document.createElement("h4");
+      // h4.setAttribute("class", "nameRepos");
+      // h4.innerHTML = repos[quant[i]].name;
+      // divsReposI[i].appendChild(h4);
 
       //   let span = document.createElement("span");
       //   span.setAttribute("class", "nameRepos");

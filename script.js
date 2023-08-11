@@ -66,38 +66,42 @@ async function showRepos(user) {
   divRepos.innerHTML = "<h3> Repositorios do usuário </h3>";
   divInforms.style.justifyContent = "space-around";
 
-  let quant = [];
+  // variavel para guardar a posição dos repositorios elencados no laço abaixo
+  let pos = [];
 
   if (repos.length > 5) {
+    // Caso o usuário tenha mais de 5 repositórios, são elencados 5 deles de forma aleatória
     for (let r = 0; r < 5; r++) {
       let m = Math.floor(Math.random() * repos.length);
-      quant.push(m);
+      pos.push(m);
     }
   } else {
+    // Se tiver menos de 5 repositórios, usamos esse for para saber exatamente qual a quantidade (se 5, 4, 2...)
     for (let i = 0; i < repos.length; i++) {
-      quant.push(i);
+      pos.push(i);
     }
   }
 
-  if (quant.length > 0) {
-    for (let i = 0; i < quant.length; i++) {
+  if (pos.length > 0) {
+    for (let i = 0; i < pos.length; i++) {
       let div = document.createElement("div");
       div.setAttribute("class", "repos");
       divRepos.appendChild(div);
-
+      
       let divReposI = document.querySelectorAll(".repos");
       let info = document.createElement("div");
+      info.setAttribute("class", "nameDateRepos");
       divReposI[i].appendChild(info);
     }
 
     let divsRepos = document.querySelectorAll(".repos");
     let divsReposI = document.querySelectorAll(".repos div");
 
-    for (let i = 0; i < quant.length; i++) {
+    for (let i = 0; i < pos.length; i++) {
       // nome do repositorio
       let h4 = document.createElement("h4");
       h4.setAttribute("class", "nameRepos");
-      h4.innerHTML = repos[quant[i]].name;
+      h4.innerHTML = repos[pos[i]].name;
       divsReposI[i].appendChild(h4);
 
       // data de criação
@@ -105,7 +109,7 @@ async function showRepos(user) {
       dateRepos.setAttribute("class", "dateRepos");
       dateRepos.innerHTML = `Data de criação : ${Intl.DateTimeFormat(
         "pt-br"
-      ).format(new Date(repos[quant[i]].created_at))} `;
+      ).format(new Date(repos[pos[i]].created_at))} `;
       divsReposI[i].appendChild(dateRepos);
 
       divsRepos[i].innerHTML += `<div class="othersInfoRepo"> </div>`;
@@ -115,26 +119,25 @@ async function showRepos(user) {
       // url do repositorio
       let url = document.createElement("a");
       url.setAttribute("class", "urlRepos");
-      url.setAttribute("href", repos[quant[i]].html_url);
+      url.setAttribute("href", repos[pos[i]].html_url);
       url.setAttribute("target", "_blank");
-      url.innerHTML = repos[quant[i]].html_url;
+      url.innerHTML = `<img width="20" height="20" src="./img/icons8-link-50.png" alt="link do repositório" /> <span> ${repos[pos[i]].html_url} </span>`;
       divsOthers[i].appendChild(url);
 
       divsOthers[i].innerHTML += `<div class="info_counts"> 
       <span class="starsRepos"> 
-        <abbr title="stars"> <img width="20" height="20" src="./img/icons8-multiple-stars-48.png" alt="multiple-stars"/> ${repos[quant[i]].stargazers_count} </abbr>
+        <abbr title="stars"> <img width="20" height="20" src="./img/icons8-multiple-stars-48.png" alt="multiple-stars"/> ${repos[pos[i]].stargazers_count} </abbr>
       </span>
 
       <span class="forksRepos"> 
-        <abbr title="forks"><img width="20" height="20" src="./img/icons8-arrows-fork-48.png" alt="arrows-fork"/> ${repos[quant[i]].forks_count} </abbr>
+        <abbr title="forks"><img width="20" height="20" src="./img/icons8-arrows-fork-48.png" alt="arrows-fork"/> ${repos[pos[i]].forks_count} </abbr>
       </span>
         
       <span class="viewsRepos"> 
-        <abbr title="views"><img width="20" height="20" src="./img/icons8-visualizar-arquivo-64.png" alt="views"/> ${repos[quant[i]].watchers_count} </abbr>
+        <abbr title="views"><img width="20" height="20" src="./img/icons8-visível-50.png" alt="views"/> ${repos[pos[i]].watchers_count} </abbr>
       </span>
         
       </div>`;
-
     }
   }
 

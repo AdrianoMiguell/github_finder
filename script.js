@@ -61,6 +61,7 @@ async function showRepos(user) {
     priority: "low",
   });
   const repos = await response.json();
+  console.log(repos);
 
   const nameRepos = document.querySelector(".nameRepos");
   divRepos.innerHTML = "<h3> Repositorios do usuário </h3>";
@@ -84,9 +85,19 @@ async function showRepos(user) {
 
   if (pos.length > 0) {
     for (let i = 0; i < pos.length; i++) {
-      let div = document.createElement("div");
-      div.setAttribute("class", "repos");
-      divRepos.appendChild(div);
+      let containerRepos = document.createElement("div");
+      containerRepos.setAttribute("class", "containerRepos");
+      divRepos.appendChild(containerRepos);
+
+      let divContainerRepos = document.querySelectorAll(".containerRepos");
+
+      let divReposInfoBasic = document.createElement("div");
+      divReposInfoBasic.setAttribute("class", "repos");
+      divContainerRepos[i].appendChild(divReposInfoBasic);
+
+      let divDescRepos = document.createElement("div");
+      divDescRepos.setAttribute("class", "infoDescRepos");
+      divContainerRepos[i].appendChild(divDescRepos);
       
       let divReposI = document.querySelectorAll(".repos");
       let info = document.createElement("div");
@@ -94,7 +105,9 @@ async function showRepos(user) {
       divReposI[i].appendChild(info);
     }
 
+    let divContainerRepos = document.querySelectorAll(".containerRepos");
     let divsRepos = document.querySelectorAll(".repos");
+    let divsDesc = document.querySelectorAll(".infoDescRepos");
     let divsReposI = document.querySelectorAll(".repos div");
 
     for (let i = 0; i < pos.length; i++) {
@@ -138,6 +151,18 @@ async function showRepos(user) {
       </span>
         
       </div>`;
+
+      divsDesc[i].innerHTML += `
+        <div class="descRepos"> 
+          <span> ${repos[pos[i]].description} </span>
+          <div class="infoLangLicense"> 
+            <span> ${repos[pos[i]].language} </span>
+            <span> ${repos[pos[i]].license.name} </span>
+          </div>
+        </div>
+
+     `;
+
     }
   }
 

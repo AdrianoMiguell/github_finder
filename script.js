@@ -6,6 +6,7 @@ const divInforms = document.querySelector(".informations");
 const userN = document.querySelector(".name");
 const avatar = document.querySelector(".avatar");
 const bio = document.querySelector(".bio");
+const iconFollowers = document.getElementById("icon-followers");
 const followers = document.querySelector(".followers");
 const following = document.querySelector(".following");
 
@@ -36,6 +37,7 @@ async function Busca() {
   if (userStatus == 404) {
     userN.innerText = "";
     avatar.setAttribute("src", "");
+    iconFollowers.style.display = "none";
     followers.innerText = "";
     following.innerText = "";
     divRepos.innerHTML = "";
@@ -52,6 +54,7 @@ async function showUser(user) {
   userN.innerText = user.name;
   avatar.setAttribute("src", user.avatar_url);
   bio.innerText = user.bio;
+  iconFollowers.style.display = "inline-block";
   followers.innerHTML = `Seguidores: ${user.followers}`;
   following.innerText = `Seguindo: ${user.following}`;
 }

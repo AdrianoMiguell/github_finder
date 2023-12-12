@@ -1,4 +1,4 @@
-# github finder
+# Github Finder
 
 Encontre usuários do github de forma rápida e simples, atráves desse sistema de busca.
 
